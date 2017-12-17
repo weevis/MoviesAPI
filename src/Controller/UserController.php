@@ -78,7 +78,8 @@ class UserController extends FOSRestController
 			$em->persist($user);
 			$em->flush();
 
-			return new View("Successfully added user.", Response::HTTP_OK);
+			$headers = array('Location' => '/api/user/' . $user->getId());
+			return new View("Successfully added user.", Response::HTTP_CREATED, $headers);
 		}
 
 		/**
